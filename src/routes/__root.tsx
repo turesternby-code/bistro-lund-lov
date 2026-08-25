@@ -77,20 +77,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bistro 13 – Bistro i centrala Lund" },
+      { title: "Bistro 13 – Bistro på Sandgatan 10 i Lund" },
       {
         name: "description",
         content:
-          "Bistro 13 på Sandgatan 10 i Lund. Uteservering, privat matsal och veganska alternativ. Öppet mån–lör 10–17, sön 11–17.",
+          "Bistro 13, Sandgatan 10, 223 50 Lund. Uteservering, privat matsal och veganska alternativ. Öppet mån–lör 10–17, sön 11–17. 100–200 kr per person.",
       },
-      { property: "og:title", content: "Bistro 13 – Bistro i centrala Lund" },
+      { property: "og:title", content: "Bistro 13 – Bistro på Sandgatan 10 i Lund" },
       {
         property: "og:description",
-        content: "Sandgatan 10, Lund. Uteservering, privat matsal och veganska alternativ.",
+        content:
+          "Sandgatan 10, 223 50 Lund. Uteservering, privat matsal och veganska alternativ. Mån–lör 10–17, sön 11–17.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+
     links: [
       {
         rel: "stylesheet",
