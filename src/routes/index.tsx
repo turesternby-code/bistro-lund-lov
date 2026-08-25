@@ -1,9 +1,74 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, MapPin, Leaf, Sun, DoorClosed, Wallet } from "lucide-react";
+import { Clock, MapPin, Leaf, Sun, DoorClosed, Wallet, Star } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { TextPlaceholder } from "@/components/TextPlaceholder";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Bistro 13 – Sandgatan 10, Lund" },
+      {
+        name: "description",
+        content:
+          "Bistro 13, Sandgatan 10, 223 50 Lund. Uteservering, privat matsal, veganska alternativ. Mån–lör 10–17, sön 11–17. 100–200 kr per person.",
+      },
+      { property: "og:title", content: "Bistro 13 – Sandgatan 10, Lund" },
+      {
+        property: "og:description",
+        content:
+          "Uteservering, privat matsal och veganska alternativ. Mån–lör 10–17, sön 11–17. 100–200 kr per person.",
+      },
+      { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Restaurant",
+          name: "Bistro 13",
+          servesCuisine: "Bistro",
+          priceRange: "100–200 kr",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Sandgatan 10",
+            postalCode: "223 50",
+            addressLocality: "Lund",
+            addressCountry: "SE",
+          },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "4.9",
+            reviewCount: "68",
+          },
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+              ],
+              opens: "10:00",
+              closes: "17:00",
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: "Sunday",
+              opens: "11:00",
+              closes: "17:00",
+            },
+          ],
+        }),
+      },
+    ],
+  }),
 });
 
 const ADRESS = "Sandgatan 10, 223 50 Lund";
@@ -20,21 +85,9 @@ const oppettider = [
 ];
 
 const tjanster = [
-  {
-    ikon: Sun,
-    titel: "Uteservering",
-    text: "Sitt ute när vädret tillåter – några steg från Sandgatan i centrala Lund.",
-  },
-  {
-    ikon: DoorClosed,
-    titel: "Privat matsal",
-    text: "Egen matsal för sällskap som vill sitta lite mer avskilt.",
-  },
-  {
-    ikon: Leaf,
-    titel: "Veganska alternativ",
-    text: "Vi har vegansk mat på menyn, inte bara som undantag.",
-  },
+  { ikon: Sun, titel: "Uteservering" },
+  { ikon: DoorClosed, titel: "Privat matsal" },
+  { ikon: Leaf, titel: "Veganska alternativ" },
 ];
 
 function Section({
@@ -66,8 +119,8 @@ function Index() {
             <a href="#meny" className="hover:text-primary">
               Meny
             </a>
-            <a href="#om-oss" className="hover:text-primary">
-              Om oss
+            <a href="#om-bistro-13" className="hover:text-primary">
+              Om Bistro 13
             </a>
             <a href="#galleri" className="hover:text-primary">
               Galleri
@@ -92,14 +145,14 @@ function Index() {
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-foreground/70">
-              Bistro i Lund sedan hörnet av Sandgatan
+              Bistro · Lund
             </p>
             <h1 className="mt-4 font-display text-5xl leading-[1.05] font-bold tracking-tight sm:text-6xl">
               Bistro <span className="text-primary">13</span>
             </h1>
-            <p className="mt-5 max-w-md text-lg text-muted-foreground">
-              Ärlig bistromat i centrala Lund. Uteservering när solen är framme, privat matsal för
-              sällskapet och veganska alternativ varje dag.
+            <p className="mt-5 flex items-center gap-2 text-sm font-medium">
+              <Star className="size-4 fill-primary text-primary" />
+              4,9 / 5 i Google-betyg baserat på 68 recensioner
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -134,7 +187,7 @@ function Index() {
           </div>
           <ImagePlaceholder
             label="Hero-bild"
-            hint="Föreslagen: fasaden eller ett dukat bord, liggande format"
+            hint="Plats för er egen bild"
             className="aspect-4/5 w-full md:aspect-3/4"
           />
         </div>
@@ -142,13 +195,12 @@ function Index() {
 
       {/* Tjänster */}
       <Section className="bg-secondary/50">
-        <h2 className="font-display text-3xl font-bold sm:text-4xl">Hos oss kan ni</h2>
+        <h2 className="font-display text-3xl font-bold sm:text-4xl">Hos oss finns</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {tjanster.map(({ ikon: Ikon, titel, text }) => (
+          {tjanster.map(({ ikon: Ikon, titel }) => (
             <div key={titel} className="rounded-xl border border-border bg-card p-6 shadow-sm">
               <Ikon className="size-6 text-primary" />
               <h3 className="mt-4 text-xl font-semibold">{titel}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{text}</p>
             </div>
           ))}
         </div>
@@ -157,108 +209,71 @@ function Index() {
       {/* Meny */}
       <Section id="meny">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 className="font-display text-3xl font-bold sm:text-4xl">Menyn i korthet</h2>
-            <p className="mt-2 max-w-lg text-muted-foreground">
-              Ett smakprov på hur vi tänker. Dagens utbud kan variera – fråga oss gärna på plats.
-            </p>
-          </div>
+          <h2 className="font-display text-3xl font-bold sm:text-4xl">Meny</h2>
           <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-medium">
             <Wallet className="size-4 text-primary" /> 100–200 kr per person
           </span>
         </div>
 
         <div className="mt-10 grid gap-8 md:grid-cols-2">
-          <div className="space-y-8">
-            {[
-              {
-                rubrik: "Till att börja med",
-                rader: [
-                  "Dagens soppa med bröd och smör",
-                  "Rostad rotfruktssalva, syrad lök (vegansk)",
-                  "Charkbricka att dela",
-                ],
-              },
-              {
-                rubrik: "Lite större",
-                rader: [
-                  "Bistrobiff med rödvinssky och pommes",
-                  "Dagens fisk med brynt smör och dill",
-                  "Örtbakad kikärtsgryta (vegansk)",
-                ],
-              },
-              {
-                rubrik: "Sött till kaffet",
-                rader: ["Chokladtryffelkaka", "Äppelkaka med vaniljkräm", "Dagens bakverk"],
-              },
-            ].map((grupp) => (
-              <div key={grupp.rubrik}>
-                <h3 className="font-display text-xl font-semibold text-primary">{grupp.rubrik}</h3>
-                <ul className="mt-3 divide-y divide-border/70">
-                  {grupp.rader.map((rad) => (
-                    <li key={rad} className="py-2.5 text-sm">
-                      {rad}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <p className="text-xs text-muted-foreground">
-              Menyn är ett exempel på vårt utbud och uppdateras löpande. Har du allergier – berätta
-              för oss när du är här.
-            </p>
-          </div>
+          <TextPlaceholder label="Lägg till egen text här" rows={14} />
           <div className="grid gap-5">
-            <ImagePlaceholder label="Rätt från menyn" className="aspect-4/3" />
-            <ImagePlaceholder label="Dagens bakverk" className="aspect-4/3" />
+            <ImagePlaceholder
+              label="Egen bild"
+              hint="Plats för er egen bild"
+              className="aspect-4/3"
+            />
+            <ImagePlaceholder
+              label="Egen bild"
+              hint="Plats för er egen bild"
+              className="aspect-4/3"
+            />
           </div>
         </div>
       </Section>
 
-      {/* Om oss */}
-      <Section id="om-oss" className="bg-secondary/50">
-        <div className="grid items-center gap-10 md:grid-cols-2">
+      {/* Historia */}
+      <Section className="bg-secondary/50">
+        <div className="grid items-start gap-10 md:grid-cols-2">
           <ImagePlaceholder
-            label="Bild på oss i köket"
-            hint="Personal, kök eller detaljer från lokalen"
+            label="Egen bild"
+            hint="Plats för er egen bild"
             className="aspect-4/3 md:order-last"
           />
           <div>
-            <h2 className="font-display text-3xl font-bold sm:text-4xl">Vår historia</h2>
-            <p className="mt-5 text-muted-foreground">
-              Bistro 13 ligger på Sandgatan 10, ett stenkast från Lunds centrum. Vi ville skapa en
-              plats där man kan äta gott utan krångel – oavsett om det är en snabb lunch mellan
-              möten eller ett långt bord med vänner.
-            </p>
-            <p className="mt-4 text-muted-foreground">
-              Köket är enkelt och ärligt. Vi lagar mat vi själva vill äta, håller priserna nere och
-              ser till att det alltid finns något vegansk på menyn. När vädret tillåter flyttar vi
-              ut serveringen, och för den som vill sitta mer avskilt finns vår privata matsal.
-            </p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Välkommen in, mån–lör 10–17 och sön 11–17.
-            </p>
+            <h2 className="font-display text-3xl font-bold sm:text-4xl">Historia</h2>
+            <TextPlaceholder label="Lägg till egen text här" rows={8} className="mt-6" />
           </div>
         </div>
       </Section>
 
+      {/* Om Bistro 13 */}
+      <Section id="om-bistro-13">
+        <h2 className="font-display text-3xl font-bold sm:text-4xl">Om Bistro 13</h2>
+        <TextPlaceholder label="Lägg till egen text här" rows={8} className="mt-6 max-w-3xl" />
+      </Section>
+
       {/* Galleri */}
-      <Section id="galleri">
+      <Section id="galleri" className="bg-secondary/50">
         <h2 className="font-display text-3xl font-bold sm:text-4xl">Galleri</h2>
-        <p className="mt-2 max-w-lg text-muted-foreground">
-          Här fyller vi på med egna bilder från restaurangen. Platserna nedan väntar på era foton.
+        <p className="mt-2 max-w-lg text-sm text-muted-foreground">
+          Platser för egna foton – klicka för att lägga till.
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <ImagePlaceholder label="Uteserveringen" className="aspect-square sm:col-span-2 sm:aspect-2/1" />
-          <ImagePlaceholder label="Matsalen" className="aspect-square" />
-          <ImagePlaceholder label="Privata matsalen" className="aspect-square" />
-          <ImagePlaceholder label="Detalj från bordet" className="aspect-square" />
-          <ImagePlaceholder label="Vegansk rätt" className="aspect-square" />
+          <ImagePlaceholder
+            label="Egen bild"
+            hint="Plats för er egen bild"
+            className="aspect-square sm:col-span-2 sm:aspect-2/1"
+          />
+          <ImagePlaceholder label="Egen bild" className="aspect-square" />
+          <ImagePlaceholder label="Egen bild" className="aspect-square" />
+          <ImagePlaceholder label="Egen bild" className="aspect-square" />
+          <ImagePlaceholder label="Egen bild" className="aspect-square" />
         </div>
       </Section>
 
       {/* Kontakt */}
-      <Section id="kontakt" className="bg-secondary/50">
+      <Section id="kontakt">
         <div className="grid gap-10 md:grid-cols-2">
           <div>
             <h2 className="font-display text-3xl font-bold sm:text-4xl">Hitta hit</h2>
@@ -285,10 +300,17 @@ function Index() {
                   <p className="text-muted-foreground">100–200 kr per person</p>
                 </div>
               </div>
+              <div className="flex gap-3">
+                <Star className="mt-0.5 size-5 shrink-0 text-primary" />
+                <div>
+                  <p className="font-semibold">Google-betyg</p>
+                  <p className="text-muted-foreground">4,9 / 5 baserat på 68 recensioner</p>
+                </div>
+              </div>
             </div>
             <ImagePlaceholder
-              label="Bild på entrén"
-              hint="Hjälper gästen att känna igen stället"
+              label="Egen bild"
+              hint="Plats för er egen bild"
               className="mt-8 aspect-16/9"
             />
           </div>
@@ -305,9 +327,6 @@ function Index() {
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs text-muted-foreground">
-              Vi tar emot gäster i mån av plats. Bordsbokning sker inte via webbplatsen.
-            </p>
           </div>
         </div>
       </Section>
@@ -320,7 +339,7 @@ function Index() {
               Bistro <span className="text-primary">13</span>
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Bistro i centrala Lund med uteservering, privat matsal och veganska alternativ.
+              Uteservering · Privat matsal · Veganska alternativ
             </p>
           </div>
           <div className="text-sm">
@@ -337,8 +356,8 @@ function Index() {
                 </a>
               </li>
               <li>
-                <a href="#om-oss" className="hover:text-primary">
-                  Om oss
+                <a href="#om-bistro-13" className="hover:text-primary">
+                  Om Bistro 13
                 </a>
               </li>
               <li>
@@ -355,7 +374,7 @@ function Index() {
           </div>
         </div>
         <p className="mx-auto mt-10 w-full max-w-6xl text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Bistro 13, Lund. Bilder läggs till av restaurangen.
+          © {new Date().getFullYear()} Bistro 13
         </p>
       </footer>
     </main>
