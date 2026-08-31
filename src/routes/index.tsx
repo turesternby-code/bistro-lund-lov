@@ -249,7 +249,7 @@ function Index() {
       </Section>
 
       {/* Historia */}
-      <Section className="bg-secondary/50">
+      <Section>
         <div className="grid items-start gap-10 md:grid-cols-2">
           <ImagePlaceholder
             label="Egen bild"
