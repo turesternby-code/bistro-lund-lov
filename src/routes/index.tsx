@@ -119,6 +119,9 @@ function Index() {
             <a href="#meny" className="hover:text-primary">
               Meny
             </a>
+            <a href="#catering" className="hover:text-primary">
+              Catering
+            </a>
             <a href="#om-bistro-13" className="hover:text-primary">
               Om Bistro 13
             </a>
@@ -229,6 +232,19 @@ function Index() {
               className="aspect-4/3"
             />
           </div>
+        </div>
+      </Section>
+
+      {/* Catering */}
+      <Section id="catering">
+        <h2 className="font-display text-3xl font-bold sm:text-4xl">Catering</h2>
+        <div className="mt-10 grid gap-8 md:grid-cols-2">
+          <TextPlaceholder label="Lägg till egen text här" rows={10} />
+          <ImagePlaceholder
+            label="Egen bild"
+            hint="Plats för er egen bild"
+            className="aspect-4/3"
+          />
         </div>
       </Section>
 
@@ -353,6 +369,11 @@ function Index() {
               <li>
                 <a href="#meny" className="hover:text-primary">
                   Meny
+                </a>
+              </li>
+              <li>
+                <a href="#catering" className="hover:text-primary">
+                  Catering
                 </a>
               </li>
               <li>
