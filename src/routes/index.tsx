@@ -2,6 +2,30 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Clock, MapPin, Leaf, Sun, DoorClosed, Wallet, Star } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { TextPlaceholder } from "@/components/TextPlaceholder";
+import exempelInterior from "@/assets/exempel-interior.jpg";
+import exempelRatt1 from "@/assets/exempel-ratt1.jpg";
+import exempelRatt2 from "@/assets/exempel-ratt2.jpg";
+import exempelCatering from "@/assets/exempel-catering.jpg";
+import exempelUteservering from "@/assets/exempel-uteservering.jpg";
+import exempelKaffe from "@/assets/exempel-kaffe.jpg";
+import exempelGaster from "@/assets/exempel-gaster.jpg";
+import exempelMatsal from "@/assets/exempel-matsal.jpg";
+
+const EXEMPEL_MENY = `Exempeltext: Vi serverar en enkel bistromeny som följer säsongen. Till lunch finns dagens varmrätt, en soppa och en salladstallrik, alltid med bröd och kaffe. Det finns alltid ett veganskt alternativ.
+
+Byt ut det här mot er egen menytext.`;
+
+const EXEMPEL_CATERING = `Exempeltext: Vi hjälper gärna till med mat till möten, fester och mindre tillställningar. Berätta hur många ni är och vilken typ av mat ni önskar, så tar vi fram ett förslag tillsammans.
+
+Byt ut det här mot er egen cateringtext.`;
+
+const EXEMPEL_HISTORIA = `Exempeltext: Bistro 13 startade som en liten idé om en plats där gäster kan äta gott utan krångel. Sedan dess har vi vuxit tillsammans med våra stamgäster i Lund.
+
+Byt ut det här mot er egen historia.`;
+
+const EXEMPEL_OM = `Exempeltext: Hos oss möts du av en avslappnad bistro med plats både inne och ute. Vi lagar maten från grunden och tar gärna emot sällskap i vår privata matsal.
+
+Byt ut det här mot er egen presentation.`;
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -190,7 +214,10 @@ function Index() {
           </div>
           <ImagePlaceholder
             label="Hero-bild"
-            hint="Plats för er egen bild"
+            hint="Ladda upp er egen bild"
+            exampleSrc={exempelInterior}
+            exampleAlt="Exempelbild: inbjudande bistromiljö"
+            eager
             className="aspect-4/5 w-full md:aspect-3/4"
           />
         </div>
@@ -219,16 +246,20 @@ function Index() {
         </div>
 
         <div className="mt-10 grid gap-8 md:grid-cols-2">
-          <TextPlaceholder label="Lägg till egen text här" rows={14} />
+          <TextPlaceholder label="Lägg till egen text här" rows={14} exampleText={EXEMPEL_MENY} />
           <div className="grid gap-5">
             <ImagePlaceholder
               label="Egen bild"
-              hint="Plats för er egen bild"
+              hint="Ladda upp er egen bild"
+              exampleSrc={exempelRatt1}
+              exampleAlt="Exempelbild: tallrik med säsongens grönsaker och bröd"
               className="aspect-4/3"
             />
             <ImagePlaceholder
               label="Egen bild"
-              hint="Plats för er egen bild"
+              hint="Ladda upp er egen bild"
+              exampleSrc={exempelRatt2}
+              exampleAlt="Exempelbild: vegansk sallad och soppa"
               className="aspect-4/3"
             />
           </div>
@@ -239,10 +270,12 @@ function Index() {
       <Section id="catering">
         <h2 className="font-display text-3xl font-bold sm:text-4xl">Catering</h2>
         <div className="mt-10 grid gap-8 md:grid-cols-2">
-          <TextPlaceholder label="Lägg till egen text här" rows={10} />
+          <TextPlaceholder label="Lägg till egen text här" rows={10} exampleText={EXEMPEL_CATERING} />
           <ImagePlaceholder
             label="Egen bild"
-            hint="Plats för er egen bild"
+            hint="Ladda upp er egen bild"
+            exampleSrc={exempelCatering}
+            exampleAlt="Exempelbild: cateringbuffé med olika rätter"
             className="aspect-4/3"
           />
         </div>
@@ -253,12 +286,19 @@ function Index() {
         <div className="grid items-start gap-10 md:grid-cols-2">
           <ImagePlaceholder
             label="Egen bild"
-            hint="Plats för er egen bild"
+            hint="Ladda upp er egen bild"
+            exampleSrc={exempelKaffe}
+            exampleAlt="Exempelbild: kaffe bryggs i baren"
             className="aspect-4/3 md:order-last"
           />
           <div>
             <h2 className="font-display text-3xl font-bold sm:text-4xl">Historia</h2>
-            <TextPlaceholder label="Lägg till egen text här" rows={8} className="mt-6" />
+            <TextPlaceholder
+              label="Lägg till egen text här"
+              rows={8}
+              className="mt-6"
+              exampleText={EXEMPEL_HISTORIA}
+            />
           </div>
         </div>
       </Section>
@@ -266,25 +306,52 @@ function Index() {
       {/* Om Bistro 13 */}
       <Section id="om-bistro-13">
         <h2 className="font-display text-3xl font-bold sm:text-4xl">Om Bistro 13</h2>
-        <TextPlaceholder label="Lägg till egen text här" rows={8} className="mt-6 max-w-3xl" />
+        <TextPlaceholder
+          label="Lägg till egen text här"
+          rows={8}
+          className="mt-6 max-w-3xl"
+          exampleText={EXEMPEL_OM}
+        />
       </Section>
 
       {/* Galleri */}
       <Section id="galleri" className="bg-secondary/50">
         <h2 className="font-display text-3xl font-bold sm:text-4xl">Galleri</h2>
         <p className="mt-2 max-w-lg text-sm text-muted-foreground">
-          Platser för egna foton – klicka för att lägga till.
+          Bilderna nedan är exempel för inspiration – klicka för att byta ut mot egna foton.
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <ImagePlaceholder
             label="Egen bild"
-            hint="Plats för er egen bild"
+            hint="Ladda upp er egen bild"
+            exampleSrc={exempelUteservering}
+            exampleAlt="Exempelbild: uteservering med bord och stolar"
             className="aspect-square sm:col-span-2 sm:aspect-2/1"
           />
-          <ImagePlaceholder label="Egen bild" className="aspect-square" />
-          <ImagePlaceholder label="Egen bild" className="aspect-square" />
-          <ImagePlaceholder label="Egen bild" className="aspect-square" />
-          <ImagePlaceholder label="Egen bild" className="aspect-square" />
+          <ImagePlaceholder
+            label="Egen bild"
+            exampleSrc={exempelMatsal}
+            exampleAlt="Exempelbild: dukad privat matsal"
+            className="aspect-square"
+          />
+          <ImagePlaceholder
+            label="Egen bild"
+            exampleSrc={exempelGaster}
+            exampleAlt="Exempelbild: gäster vid ett bistrobord"
+            className="aspect-square"
+          />
+          <ImagePlaceholder
+            label="Egen bild"
+            exampleSrc={exempelRatt2}
+            exampleAlt="Exempelbild: vegansk rätt"
+            className="aspect-square"
+          />
+          <ImagePlaceholder
+            label="Egen bild"
+            exampleSrc={exempelKaffe}
+            exampleAlt="Exempelbild: kaffe i baren"
+            className="aspect-square"
+          />
         </div>
       </Section>
 
@@ -326,7 +393,9 @@ function Index() {
             </div>
             <ImagePlaceholder
               label="Egen bild"
-              hint="Plats för er egen bild"
+              hint="Ladda upp er egen bild"
+              exampleSrc={exempelUteservering}
+              exampleAlt="Exempelbild: uteservering på gatan"
               className="mt-8 aspect-16/9"
             />
           </div>
