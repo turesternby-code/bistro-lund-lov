@@ -285,12 +285,7 @@ function Index() {
           />
           <div>
             <h2 className="font-display text-3xl font-bold sm:text-4xl">Historia</h2>
-            <TextPlaceholder
-              label="Lägg till egen text här"
-              rows={8}
-              className="mt-6"
-              exampleText={EXEMPEL_HISTORIA}
-            />
+            <ExampleTextCard className="mt-6">{EXEMPEL_HISTORIA}</ExampleTextCard>
           </div>
         </div>
       </Section>
