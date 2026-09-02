@@ -15,7 +15,7 @@ import exempelMatsal from "@/assets/exempel-matsal.jpg";
 
 const EXEMPEL_CATERING = `Vi hjälper gärna till med mat till möten, fester och mindre tillställningar. Berätta hur många ni är och vilken typ av mat ni önskar, så tar vi fram ett förslag tillsammans.`;
 
-const EXEMPEL_HISTORIA = `Bistro 13 startade som en liten idé om en plats där gäster kan äta gott utan krångel. Sedan dess har vi vuxit tillsammans med våra stamgäster i Lund.`;
+
 
 const EXEMPEL_OM = `Hos oss möts du av en avslappnad bistro med plats både inne och ute. Vi lagar maten från grunden och tar gärna emot sällskap i vår privata matsal.`;
 
@@ -273,22 +273,7 @@ function Index() {
         </div>
       </Section>
 
-      {/* Historia */}
-      <Section className="bg-secondary/50">
-        <div className="grid items-start gap-10 md:grid-cols-2">
-          <ImagePlaceholder
-            label="Egen bild"
-            hint="Ladda upp er egen bild"
-            exampleSrc={exempelKaffe}
-            exampleAlt="Exempelbild: kaffe bryggs i baren"
-            className="aspect-4/3 md:order-last"
-          />
-          <div>
-            <h2 className="font-display text-3xl font-bold sm:text-4xl">Historia</h2>
-            <ExampleTextCard className="mt-6">{EXEMPEL_HISTORIA}</ExampleTextCard>
-          </div>
-        </div>
-      </Section>
+
 
       {/* Om Bistro 13 */}
       <Section id="om-bistro-13">
