@@ -15,9 +15,7 @@ import exempelMatsal from "@/assets/exempel-matsal.jpg";
 
 const EXEMPEL_CATERING = `Vi hjälper gärna till med mat till möten, fester och mindre tillställningar. Berätta hur många ni är och vilken typ av mat ni önskar, så tar vi fram ett förslag tillsammans.`;
 
-const EXEMPEL_HISTORIA = `Exempeltext: Bistro 13 startade som en liten idé om en plats där gäster kan äta gott utan krångel. Sedan dess har vi vuxit tillsammans med våra stamgäster i Lund.
-
-Byt ut det här mot er egen historia.`;
+const EXEMPEL_HISTORIA = `Bistro 13 startade som en liten idé om en plats där gäster kan äta gott utan krångel. Sedan dess har vi vuxit tillsammans med våra stamgäster i Lund.`;
 
 const EXEMPEL_OM = `Hos oss möts du av en avslappnad bistro med plats både inne och ute. Vi lagar maten från grunden och tar gärna emot sällskap i vår privata matsal.`;
 
