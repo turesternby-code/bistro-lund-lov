@@ -300,12 +300,7 @@ function Index() {
       {/* Om Bistro 13 */}
       <Section id="om-bistro-13">
         <h2 className="font-display text-3xl font-bold sm:text-4xl">Om Bistro 13</h2>
-        <TextPlaceholder
-          label="Lägg till egen text här"
-          rows={8}
-          className="mt-6 max-w-3xl"
-          exampleText={EXEMPEL_OM}
-        />
+        <ExampleTextCard className="mt-6 max-w-3xl">{EXEMPEL_OM}</ExampleTextCard>
       </Section>
 
       {/* Galleri */}
