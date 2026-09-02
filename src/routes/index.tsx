@@ -243,7 +243,7 @@ function Index() {
         </div>
 
         <div className="mt-10 grid gap-8 md:grid-cols-2">
-          <TextPlaceholder label="Lägg till egen text här" rows={14} exampleText={EXEMPEL_MENY} />
+          <ExampleMenu className="h-full" />
           <div className="grid gap-5">
             <ImagePlaceholder
               label="Egen bild"
