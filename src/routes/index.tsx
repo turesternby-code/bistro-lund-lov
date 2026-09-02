@@ -264,7 +264,7 @@ function Index() {
       <Section id="catering">
         <h2 className="font-display text-3xl font-bold sm:text-4xl">Catering</h2>
         <div className="mt-10 grid gap-8 md:grid-cols-2">
-          <TextPlaceholder label="Lägg till egen text här" rows={10} exampleText={EXEMPEL_CATERING} />
+          <ExampleTextCard>{EXEMPEL_CATERING}</ExampleTextCard>
           <ImagePlaceholder
             label="Egen bild"
             hint="Ladda upp er egen bild"
