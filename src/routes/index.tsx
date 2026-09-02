@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Clock, MapPin, Leaf, Sun, DoorClosed, Wallet, Star } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { TextPlaceholder } from "@/components/TextPlaceholder";
+import { ExampleMenu } from "@/components/ExampleMenu";
 import exempelInterior from "@/assets/exempel-interior.jpg";
 import exempelRatt1 from "@/assets/exempel-ratt1.jpg";
 import exempelRatt2 from "@/assets/exempel-ratt2.jpg";
@@ -10,10 +11,6 @@ import exempelUteservering from "@/assets/exempel-uteservering.jpg";
 import exempelKaffe from "@/assets/exempel-kaffe.jpg";
 import exempelGaster from "@/assets/exempel-gaster.jpg";
 import exempelMatsal from "@/assets/exempel-matsal.jpg";
-
-const EXEMPEL_MENY = `Exempeltext: Vi serverar en enkel bistromeny som följer säsongen. Till lunch finns dagens varmrätt, en soppa och en salladstallrik, alltid med bröd och kaffe. Det finns alltid ett veganskt alternativ.
-
-Byt ut det här mot er egen menytext.`;
 
 const EXEMPEL_CATERING = `Exempeltext: Vi hjälper gärna till med mat till möten, fester och mindre tillställningar. Berätta hur många ni är och vilken typ av mat ni önskar, så tar vi fram ett förslag tillsammans.
 
